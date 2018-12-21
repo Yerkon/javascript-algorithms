@@ -1,0 +1,104 @@
+/**
+ * Initialize your data structure here.
+ */
+class TrieNode {
+    constructor(character, isCompletedWord = false){
+        this.character = character;
+        this.isCompletedWord = isCompletedWord;
+        this.children = {};
+    }
+    
+    
+   /**
+   * @param {string} character
+   * @param {boolean} isCompleteWord
+   * @return {TrieNode}
+   */
+    addChild(character, isCompleteWord = false) {
+        this.children[character] = new TrieNode(character, isCompleteWord);     
+        
+        return this.children[character];
+    }
+    
+   /**
+   * @param {string} character
+   * @return {TrieNode}
+   */
+    getChild(character) {
+        return this.children[character];
+    }
+    
+   /**  
+   * @return {string[]}
+   */
+    getChildren(){
+        return Object.keys(this.children);
+    }
+    
+    toString() {
+        let resultArr = [];
+        let currNode = this;
+        let childrenArr = this.getChildren();
+       
+        
+        for(let i = 0; i < childrenArr.length; i++){
+            
+            while(currNode){
+                let childCharacter = childrenArr[i];
+                let childNode = currNode[childCharacter];
+                resultArr.push(childCharacter);
+            }
+            
+            resultArr.push('end of', i);
+        }
+        
+        console.log(resultArr);
+    }
+}
+
+var Trie = function() {
+    this.head = new TrieNode('*');
+};
+
+/**
+ * Inserts a word into the trie. 
+ * @param {string} word
+ * @return {void}
+ */
+Trie.prototype.insert = function(word) {
+    let currNode = this.head;
+    
+    for(let i = 0; i<word.length; i++){
+        let character = word[i];
+        let isCompleWord = i === word.length-1;
+        currNode = currNode.addChild(character, isCompleWord);
+    }
+    
+    this.head.toString();
+};
+
+/**
+ * Returns if the word is in the trie. 
+ * @param {string} word
+ * @return {boolean}
+ */
+Trie.prototype.search = function(word) {
+    
+};
+
+/**
+ * Returns if there is any word in the trie that starts with the given prefix. 
+ * @param {string} prefix
+ * @return {boolean}
+ */
+Trie.prototype.startsWith = function(prefix) {
+    
+};
+
+/** 
+ * Your Trie object will be instantiated and called as such:
+ * var obj = Object.create(Trie).createNew()
+ * obj.insert(word)
+ * var param_2 = obj.search(word)
+ * var param_3 = obj.startsWith(prefix)
+ */
