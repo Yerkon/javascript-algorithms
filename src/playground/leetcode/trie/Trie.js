@@ -1,3 +1,5 @@
+import TrieNode from './TrieNode';
+
 /*
 208. Implement Trie (Prefix Tree)
 Implement a trie with insert, search, and startsWith methods.
@@ -11,7 +13,7 @@ Example:
     trie.search("apple");   // returns true
     trie.search("app");     // returns false
     trie.startsWith("app"); // returns true
-    trie.insert("app");   
+    trie.insert("app");
     trie.search("app");     // returns true
 
 Note:
@@ -21,46 +23,46 @@ Note:
 
 */
 
-var Trie = function() {
-    this.head = new TrieNode('*');
+const Trie = () => {
+  this.head = new TrieNode('*');
 };
 
 /**
- * Inserts a word into the trie. 
+ * Inserts a word into the trie.
  * @param {string} word
  * @return {void}
  */
-Trie.prototype.insert = function(word) {
-    let currNode = this.head;
-    
-    for(let i = 0; i<word.length; i++){
-        let character = word[i];
-        let isCompleWord = i === word.length-1;
-        currNode = currNode.addChild(character, isCompleWord);
-    }
-    
-    this.head.toString();
+Trie.prototype.insert = (word) => {
+  let currNode = this.head;
+
+  for (let i = 0; i < word.length; i++) {
+    const character = word[i];
+    const isCompleWord = i === word.length - 1;
+    currNode = currNode.addChild(character, isCompleWord);
+  }
+
+  this.head.toString();
 };
 
 /**
- * Returns if the word is in the trie. 
+ * Returns if the word is in the trie.
  * @param {string} word
  * @return {boolean}
  */
-Trie.prototype.search = function(word) {
-    
+Trie.prototype.search = (word) => {
+
 };
 
 /**
- * Returns if there is any word in the trie that starts with the given prefix. 
+ * Returns if there is any word in the trie that starts with the given prefix.
  * @param {string} prefix
  * @return {boolean}
  */
-Trie.prototype.startsWith = function(prefix) {
-    
+Trie.prototype.startsWith = (prefix) => {
+
 };
 
-/** 
+/**
  * Your Trie object will be instantiated and called as such:
  * var obj = Object.create(Trie).createNew()
  * obj.insert(word)
